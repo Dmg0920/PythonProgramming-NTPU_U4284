@@ -1,0 +1,75 @@
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ───────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── uv ────────────────────────────────────────────────────────────────────
+.uv/
+
+# ── Jupyter Notebooks ──────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+# 若不想追蹤 notebook output，取消下一行注釋：
+# *.ipynb
+
+# ── R / RStudio / Positron ────────────────────────────────────────────────
+.Rhistory
+.Rapp.history
+.RData
+.Rproj.user/
+*.Rproj
+renv/
+.renv/
+
+# ── LaTeX / PDF 暫存檔 ─────────────────────────────────────────────────────
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# ── 資料目錄（原始資料不進版本控制）──────────────────────────────────────
+data/raw/
+
+# ── 輸出目錄 ───────────────────────────────────────────────────────────────
+output/
+outputs/
+results/
+figures/
+
+# ── macOS ──────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ── 環境變數（絕不提交）───────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.secret
+secrets.json
+credentials.json

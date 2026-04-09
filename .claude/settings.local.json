@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \":*)",
+      "Bash(jupyter nbconvert:*)",
+      "Bash(python3 -m jupyter nbconvert --version)",
+      "Bash(python3 -c \"import nbconvert\")",
+      "Bash(/Users/moses/Documents/Moses/01_Academic/Programming/Python_Programming/Codes/venv/bin/python3 -m jupyter nbconvert --to html HW2.ipynb --output HW2.html)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/bin/**)",
+      "Bash(/opt/homebrew/bin/python3.14 -m jupyter nbconvert --version)",
+      "Bash(pip3 show:*)",
+      "Bash(pip3 --version)",
+      "Bash(/opt/homebrew/bin/python3.14 -m pip install nbconvert)",
+      "Bash(/opt/homebrew/bin/python3.14 -m pip install nbconvert --break-system-packages)",
+      "Bash(jupyter --version)",
+      "Bash(mkdir -p /Users/moses/Library/Jupyter/nbconvert/templates/cjk_pdf)",
+      "Read(//usr/share/texmf/tex/latex/**)",
+      "Bash(kpsewhich xeCJK.sty)",
+      "Bash(ls *.log)",
+      "Bash(xelatex -interaction=nonstopmode HW2.tex)",
+      "Bash(vm_stat)",
+      "Bash(awk 'NR<=8')",
+      "Bash(awk '{sum+=$6} END {printf \"Cursor total RAM: %.0fMB\\\\n\", sum/1024}')",
+      "Bash(top -l 1 -n 0)",
+      "Bash(find /Users/moses/Documents/Moses/01_Academic/Programming/Shallow_Machine_Learning/ml_course -name \"*.ipynb\" -exec du -sh {} \\\\;)"
+    ]
+  }
+}
