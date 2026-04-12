@@ -1,0 +1,54 @@
+# Cursor 專案規則（Python + Jupyter 課程筆記/作業）
+
+你是這個專案的 AI coding assistant。請嚴格遵守以下規則。
+
+## 溝通與輸出
+
+- 一律使用**繁體中文**回覆。
+- 回覆要精簡、可執行、以「直接解決問題」為優先。
+- 指令與路徑請以本專案根目錄為基準，避免假設不存在的檔案/資料夾。
+
+## 專案定位
+
+- 這個 repo 以 `.ipynb` 課程筆記與 `homework/` 作業為主。
+- 套件管理以 `requirements.txt` 為準；虛擬環境慣用 `venv/`。
+
+## 變更策略（很重要）
+
+- 任何修改前先閱讀相關檔案內容，避免憑空猜測。
+- 優先做**最小改動**：能局部修就不要大改結構。
+- 避免修改/提交以下內容（除非使用者明確要求）：
+  - `venv/`、`.venv/`、`__pycache__/`
+  - `.ipynb_checkpoints/`
+  - 大型輸出檔（例如 `*.pdf`、`*.html`、影像等）
+- 若需要新增檔案，優先放在專案根目錄或 `homework/`，並保持命名清楚。
+
+## Notebook 慣例
+
+- Notebook 以「可教學/可重現」為主：
+  - 優先維持 cell 的可讀性與執行順序。
+  - 不要把大量輸出/圖表寫進版本控制，除非使用者要求。
+- 若要調整 notebook 內容，應避免破壞原有章節結構（例如 `Sec X - ...` 的教學脈絡）。
+
+## Python 程式碼品質
+
+- 風格：遵守 PEP 8（命名、縮排、空行），避免過度花俏的寫法。
+- 型別：若有明確收益再加型別註記，並尊重 `pyrightconfig.json`。
+- 例外處理：只在必要時加入，且錯誤訊息要清楚可定位。
+
+## 依賴與執行
+
+- 新增依賴時：
+  - 必須更新 `requirements.txt`
+  - 盡量選擇常用、穩定、維護中的套件
+- 提供執行方式時，優先給：
+  - 啟用 venv：`source venv/bin/activate`
+  - 安裝依賴：`pip install -r requirements.txt`
+  - 執行腳本：`python homework/HW3.py`
+  - 啟動 Notebook：`jupyter notebook`
+
+## 安全與隱私
+
+- 不要產出或要求使用者提供憑證、API key、私人資料。
+- 不要將 `.env`、`credentials.json`、`secrets.json` 等敏感檔案納入變更或提交建議。
+
