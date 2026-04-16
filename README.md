@@ -1,101 +1,70 @@
-# Python 課程筆記與作業（Jupyter Notebooks）
+# Python 課程筆記與作業
 
-這個資料夾主要放 Python 課程筆記（`.ipynb`）與作業檔案（`homework/`），並用 `requirements.txt` 管理需要的套件。
+以 Jupyter Notebook 為主的 Python 課程學習紀錄，涵蓋基礎語法、流程控制、函式與類別，以及 NumPy、pandas 等常用套件介紹。
 
-## 專案內容
+## 專案結構
 
-- **課程筆記**：`Sec 1 - Basic.ipynb`、`Sec 2 - Flow Control.ipynb`、`Sec 3 - Function, Class.ipynb`、`Sec 4.1 - Package Intro - numpy.ipynb`
-- **作業**：`homework/`（包含 `HW1.ipynb`、`HW2.ipynb`、`HW3.py` 與輸出檔）
-- **相依套件**：`requirements.txt`
-- **型別檢查設定**：`pyrightconfig.json`
+```text
+.
+├── Sec 1 - Basic.ipynb                    # 基礎語法
+├── Sec 2 - Flow Control.ipynb             # 流程控制
+├── Sec 3 - Function, Class.ipynb          # 函式與類別
+├── Sec 3.1 - case test.py                 # match-case 範例
+├── Sec 4.1 - Package Intro - numpy.ipynb  # NumPy 套件介紹
+├── Sec 4.2 - Package Intro - pandas.ipynb # pandas 套件介紹
+├── homework/
+│   ├── HW1.ipynb
+│   ├── HW2.ipynb
+│   └── HW3.py
+├── pyproject.toml          # uv 專案設定
+├── requirements.txt        # pip 相容依賴清單
+└── pyrightconfig.json      # 型別檢查設定
+```
 
-## 需求
+## 環境需求
 
-- Python 3（建議 3.10+）
-- macOS / Linux / Windows 皆可
+- Python 3.12+
+- macOS / Linux / Windows
 
-## 安裝與環境建立（推薦使用 venv）
+## 快速開始
 
-在此資料夾根目錄執行：
+### 使用 uv（推薦）
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-python -m pip install --upgrade pip
+uv sync
+```
+
+### 使用 pip + venv
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-> 若你已經有 `venv/`，只需要執行 `source venv/bin/activate` 後再 `pip install -r requirements.txt` 更新套件即可。
-
-## 開啟 Jupyter Notebook
-
-如果你的環境還沒裝 Jupyter：
-
-```bash
-pip install jupyter
-```
-
-啟動：
+## 開啟 Notebook
 
 ```bash
 jupyter notebook
 ```
 
-然後在瀏覽器開啟你要的 `.ipynb`（例如 `Sec 1 - Basic.ipynb`）。
+在瀏覽器中開啟對應的 `.ipynb` 即可閱讀或執行。
 
-## 執行作業程式（以 HW3 為例）
+## 執行作業
 
 ```bash
 python homework/HW3.py
 ```
 
-## 專案結構（概要）
+## 主要套件
 
-```text
-.
-├── requirements.txt
-├── pyrightconfig.json
-├── Sec 1 - Basic.ipynb
-├── Sec 2 - Flow Control.ipynb
-├── Sec 3 - Function, Class.ipynb
-├── Sec 4.1 - Package Intro - numpy.ipynb
-├── homework/
-│   ├── HW1.ipynb
-│   ├── HW2.ipynb
-│   └── HW3.py
-└── venv/              # 虛擬環境（不建議提交到 git）
-```
-
-## 常見問題
-
-### 1) `ModuleNotFoundError` / 找不到套件
-
-- 確認你已啟用虛擬環境（看到命令列前面有 `(venv)`）
-- 重新安裝相依：
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2) Notebook 的 Kernel 不在 venv
-
-- 先安裝 ipykernel：
-
-```bash
-pip install ipykernel
-python -m ipykernel install --user --name venv --display-name "Python (venv)"
-```
-
-然後在 Notebook 內切換 Kernel 到 **Python (venv)**。
-
-## 版本控制建議
-
-此資料夾已包含 `.gitignore`，其中會忽略常見的：
-
-- `venv/`、`.venv/`
-- `.ipynb_checkpoints/`
-- `__pycache__/`
-- `.DS_Store`
-
-如需避免提交 notebook output，可在 `.gitignore` 解除 `# *.ipynb` 的註解（會改成忽略所有 `.ipynb`）。
-
+| 套件 | 用途 |
+|------|------|
+| numpy | 數值計算 |
+| pandas | 資料處理與分析 |
+| matplotlib | 資料視覺化 |
+| seaborn | 統計繪圖 |
+| scipy | 科學計算 |
+| openpyxl | Excel 讀寫 |
+| schemdraw | 電路圖繪製 |
+| pydantic | 資料驗證 |
