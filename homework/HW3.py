@@ -198,8 +198,12 @@ class LinearRecurrenceSolver:
             self.general_coefficients = solve(a_matrix, b_vector, assume_a="gen")
         except LinAlgError:
             # Fallback in rare ill-conditioned scenarios.
-            self.general_coefficients, _, _, _ = lstsq(a_matrix, b_vector)
+            lstsq_result = lstsq(a_matrix, b_vector)
+            if lstsq_result is None:
+                raise RuntimeError("lstsq returned None unexpectedly.")
+            self.general_coefficients = lstsq_result[0]
 
+        assert self.general_coefficients is not None
         return self.general_coefficients
 
     def _ensure_solved(self) -> None:
