@@ -57,6 +57,13 @@ output/
 outputs/
 results/
 figures/
+Fig Saver/
+
+# ── 課程/作業輸出與資料檔（避免大型/二進位檔進版控）──────────────────────────
+*.pdf
+*.xlsx
+homework/*.html
+Pandas Read Files-20260423/
 
 # ── macOS ──────────────────────────────────────────────────────────────────
 .DS_Store
