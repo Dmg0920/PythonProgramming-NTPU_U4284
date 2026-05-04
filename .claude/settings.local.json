@@ -23,7 +23,8 @@
       "Bash(awk 'NR<=8')",
       "Bash(awk '{sum+=$6} END {printf \"Cursor total RAM: %.0fMB\\\\n\", sum/1024}')",
       "Bash(top -l 1 -n 0)",
-      "Bash(find /Users/moses/Documents/Moses/01_Academic/Programming/Shallow_Machine_Learning/ml_course -name \"*.ipynb\" -exec du -sh {} \\\\;)"
+      "Bash(find /Users/moses/Documents/Moses/01_Academic/Programming/Shallow_Machine_Learning/ml_course -name \"*.ipynb\" -exec du -sh {} \\\\;)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

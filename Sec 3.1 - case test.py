@@ -6,16 +6,15 @@ from typing import Any,Union,Optional,Type,NewType
 def h1(x: list[int]) -> float:
     '''Harmonic Mean'''
     return len(x) / sum([1/k for k in x])
-# Using Optional
-def h2(x: list[int]) -> Optional[str]:
+def h2(x: list[int]) -> Optional[float]:  # 改成 Optional[float]
     '''Harmonic Mean'''
     return len(x) / sum([1/k for k in x])
-# Using Union
-def h3(x: list[int]) -> Union[str,int]:
+
+def h3(x: list[int]) -> Union[float, int]:  # 改成 Union[float, int]
     '''Harmonic Mean'''
     return len(x) / sum([1/k for k in x])
-# Using Any
-def h4(x: list[int]) -> Any:
+
+def h4(x: list[int]) -> float:  # 改成 float，不用 Any
     '''Harmonic Mean'''
     return len(x) / sum([1/k for k in x])
 
