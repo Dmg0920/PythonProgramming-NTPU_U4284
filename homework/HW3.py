@@ -81,6 +81,9 @@ class SierpinskiMatrix:
         fig.suptitle(figure_title, fontsize=14)
         plt.tight_layout()
 
+# Example:
+# SierpinskiMatrix.build_elementwise(3)
+
 
 @dataclass
 class BasisTerm:
@@ -88,6 +91,9 @@ class BasisTerm:
 
     root: complex
     power: int
+
+# Example:
+# BasisTerm(root=2, power=1)
 
 
 class LinearRecurrenceSolver:
@@ -300,6 +306,9 @@ class LinearRecurrenceSolver:
             )
         print("-" * 88)
 
+# Example:
+# LinearRecurrenceSolver([6, -9], [2, 3], name="Seq1").characteristic_roots()
+
 
 def run_exercise_1() -> None:
     """Exercise 1: build and plot Sierpinski matrices."""
@@ -318,6 +327,9 @@ def run_exercise_1() -> None:
     )
 
     plt.show()
+
+# Example:
+# run_exercise_1()
 
 
 def run_exercise_2() -> None:
@@ -354,11 +366,17 @@ def run_exercise_2() -> None:
         solver.print_general_solution()
         solver.print_comparison_table(n_terms=15)
 
+# Example:
+# run_exercise_2()
+
 
 def main() -> None:
     """Run both exercises."""
     run_exercise_1()
     run_exercise_2()
+
+# Example:
+# main()
 
 
 if __name__ == "__main__":

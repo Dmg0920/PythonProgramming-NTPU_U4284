@@ -158,11 +158,185 @@ def test_oop_functions_and_numpy_patterns() -> None:
     assert Zg[2, 2] == 1.0
 
 
+def test_sec_notebook_expansions() -> None:
+    assert ep.cafeteria_action(True, False, False) == "deliver the choice"
+    assert ep.cafeteria_action(True, True, False) == "light the error light"
+    assert ep.quotient_remainder(7, 2) == (3, 1)
+    assert ep.exact_decimal_check() == (True, True)
+    assert ep.float_isclose_sum()
+    assert ep.regex_search_one(r"[A-Z]\d+", "ID: A12, B34") == "A12"
+    assert ep.regex_find(r"User\d", "User9, UserN, User8") == ["User9", "User8"]
+    assert ep.regex_split(r"\s", "The rain in Spain", maxsplit=1) == ["The", "rain in Spain"]
+    assert ep.regex_replace("yellow", "nice", "yellow car yellow house", count=1) == "nice car yellow house"
+    assert list(ep.seq_div(20, [2, 3])) == [0, 6, 12, 18]
+    assert list(ep.exam_countdown(3)) == [3, 2, 1]
+    assert ep.generator_consumption_demo(3) == ([0, 1, 4], [])
+    assert ep.join_words(["Python", "is", "clear"]) == "Python is clear"
+    original, shallow, deep = ep.shallow_deep_copy_demo([[1], [2]])
+    assert original == [[1, 99], [2]]
+    assert shallow == [[1, 99], [2]]
+    assert deep == [[1], [2]]
+    close(ep.zero_truncated_poisson_pmf(1, 2), 0.3130, 1e-3)
+    assert ep.dict_filter_by_value({"a": 1, "b": 3}, 2) == {"b": 3}
+    assert ep.set_operations({1, 2}, {2, 3})["symmetric_difference"] == {1, 3}
+    assert np.allclose(ep.increasing_rate([100, 110, 121]), [0.1, 0.1])
+
+    assert ep.lcg_sequence(1, 2, 0, 9, 8) == [1, 2, 4, 8, 7, 5, 1, 2]
+    close(ep.steffensen(math.cos, 0.5), 0.7391, 1e-4)
+    np.random.seed(11)
+    assert len(ep.dice_running_mean(20)) == 20
+    walk_x, walk_y = ep.random_walk_2d(bound=3, seed=1)
+    assert abs(walk_x[-1]) > 3 or abs(walk_y[-1]) > 3
+
+    fv = ep.Final_Value(12000, 0.075, 3, "inf")
+    close(ep.present_value(fv, 0.075, 3), 12000, 1e-8)
+    assert ep.grade_safe(90, 30) == 60
+    assert ep.weighted_avg([90, 80, 70], [0.3, 0.3, 0.4]) == 79
+    assert ep.parser("cy.sc10@nycu.edu.tw") == "cy.sc10"
+    assert ep.parser("not-email") is None
+    assert ep.cosine_sim([1, 0], [0, 1]) == 0
+    assert ep.Product(price="99").price == 99
+    try:
+        ep.User(age="20")
+    except Exception:
+        pass
+    else:
+        raise AssertionError("strict pydantic field should reject string age")
+    assert ep.NightClub_check(ep.Guest(name="Diego", age=28), room_No=9457) == "success : Diego enter room 9457"
+    emp = ep.Employee(name="alice chen", salary=75000, address=ep.Address(city="Taipei", zip_code="10617"))
+    assert emp.name == "Alice Chen"
+    assert ep.debug_call(lambda x, y=0: x + y, 2, y=3) == 5
+    assert ep.merge_dicts_new({"verb": "beats"}, {"subject": "Python"}) == {"verb": "beats", "subject": "Python"}
+    close(ep.gompertz(1, 5, 1, 0), math.exp(-5), 1e-12)
+    close(ep.power_mean(2, 12.87, 3.12), 9.36, 0.01)
+    assert ep.fibonacci_until(100) == (144, 12)
+    recurrence = ep.make_recurrence([4, 3, -18], [1, 1, 2])
+    assert [int(recurrence(k)) for k in range(5)] == [1, 1, 2, -7, -40]
+    assert ep.tri_closed(5) == 15
+    assert ep.tri_inverse(11) == 5
+    assert ep.tri_seq(5) == 15
+    assert ep.pascal_I(5, 2) == 10
+    assert ep.pascal_II(5, 2) == 10
+    assert ep.pascal_dp(4)[4] == [1, 4, 6, 4, 1]
+    inc, reset = ep.make_counter(10)
+    assert inc() == 11
+    assert inc(5) == 16
+    reset()
+    assert inc() == 11
+    assert repr(ep.Car("Tesla", 2023)) == "Car(brand='Tesla', year=2023)"
+    ev = ep.ElectricCar("Tesla Model 3", 75)
+    assert ev.info() == "Vehicle: Tesla Model 3 | Battery: 75 kWh"
+    assert ev.range_km() == 450
+    summary = ep.Stats.from_csv_line("12.87, 3.12").summary()
+    close(summary["AM"], 7.995, 1e-12)
+    assert ep.Circle(5).area() == ep.ShapeFactory.create("circle", radius=5).area()
+
+    assert np.array_equal(ep.sliding_window(np.arange(5), 3), [[0, 1, 2], [1, 2, 3], [2, 3, 4]])
+    assert np.allclose(ep.cal_recip([1, 2, 4]), [1, 0.5, 0.25])
+    assert ep.heaviside_1(-1) == 0
+    assert np.array_equal(ep.heaviside_3([-1, 0, 2]), [0, 0, 1])
+    assert np.array_equal(ep.ramp([-1, 0, 2]), [0, 0, 2])
+    A = np.array([[1.0], [1.0]])
+    assert np.allclose(ep.projection_matrix(A), [[0.5, 0.5], [0.5, 0.5]])
+    assert np.allclose(ep.project_vector(A, [2, 0]), [1, 1])
+
+    df1 = ep.make_df("AB", [1, 2])
+    df2 = ep.make_df("AB", [3])
+    assert ep.concat_frames([df1, df2]).shape == (3, 2)
+    missing = ep.missing_summary(pd_df := ep.pd.DataFrame({"x": [1.0, np.nan], "g": ["a", "a"]}))
+    assert missing.loc["x", "missing"] == 1
+    assert ep.fill_missing(pd_df, "mean")["x"].isna().sum() == 0
+    left = ep.pd.DataFrame({"id": [1], "x": [2]})
+    right = ep.pd.DataFrame({"id": [1], "y": [3]})
+    assert ep.merge_frames(left, right, on="id").iloc[0]["y"] == 3
+    assert ep.iqr(ep.pd.Series([1, 2, 3, 4])) == 1.5
+    grouped = ep.group_zscore(ep.pd.DataFrame({"g": ["a", "a", "b", "b"], "x": [1, 3, 10, 14]}), "g", "x")
+    assert "x_zscore" in grouped.columns
+    assert "cv" in ep.group_summary(grouped, "g", "x").columns
+    pivot = ep.pivot_counts(ep.pd.DataFrame({"a": ["x", "x", "y"], "b": ["m", "n", "m"]}), "a", "b")
+    assert pivot.loc["x", "m"] == 1
+    Xc, Yc, Zc = ep.contour_grid(lambda X, Y: X + Y, (-1, 1), (-1, 1), n=5)
+    assert Xc.shape == Yc.shape == Zc.shape == (5, 5)
+
+
+def test_slide_expansions() -> None:
+    assert ep.conditional_expression(True, "yes", "no") == "yes"
+    assert ep.try_except_else_finally_demo("12") == ("parsed:12", ["else", "finally"])
+    assert ep.try_except_else_finally_demo("x") == ("invalid", ["except", "finally"])
+    assert ep.loop_else_find(["a", "b"], "b") == (True, 1)
+    assert ep.loop_else_find(["a", "b"], "z") == (False, None)
+
+    np.random.seed(21)
+    samples = ep.inverse_transform_discrete(["a", "b"], [0.25, 0.75], 20)
+    assert set(samples).issubset({"a", "b"})
+    cauchy = ep.cauchy_inverse_transform(10, mu=1, sigma=2)
+    assert len(cauchy) == 10
+
+    attrs = ep.array_attributes(np.zeros((2, 3), dtype=np.int32))
+    assert attrs["ndim"] == 2
+    assert attrs["shape"] == (2, 3)
+    assert attrs["dtype"] == np.dtype("int32")
+    assert np.array_equal(ep.int_array_float_truncation([1.9, -3.1]), [1, -3])
+    stacks = ep.concatenate_stack([1, 2], [3, 4])
+    assert np.array_equal(stacks["concatenate"], [1, 2, 3, 4])
+    assert np.array_equal(stacks["vstack"], [[1, 2], [3, 4]])
+    assert len(ep.split_array(np.arange(6), 3)) == 3
+    assert np.array_equal(ep.ufunc_out_square([2, 3]), [4, 9])
+    assert ep.ufunc_reduce_sum([1, 2, 3]) == 6
+    nan_stats = ep.nan_safe_aggregates([1, np.nan, 3])
+    assert nan_stats["nanmean"] == 2
+    assert np.array_equal(ep.mask_between(np.arange(6), 2, 4), [2, 3, 4])
+    assert ep.mask_count(np.arange(6), lambda x: x % 2 == 0) == 3
+    unsorted = [3, 1, 2, 1]
+    assert ep.selection_sort(unsorted) == [1, 1, 2, 3]
+    assert ep.bubble_sort(unsorted) == [1, 1, 2, 3]
+    assert ep.insertion_sort(unsorted) == [1, 1, 2, 3]
+    assert ep.merge_sort(unsorted) == [1, 1, 2, 3]
+    assert ep.quick_sort(unsorted) == [1, 1, 2, 3]
+    assert np.allclose(ep.solve_linear_system(np.eye(2), [5, 6]), [5, 6])
+
+    s = ep.series_from_mapping({"a": 1, "b": 2})
+    assert s.loc["a"] == 1
+    df = ep.pd.DataFrame({"x": [1, 2, np.nan], "g": ["a", "a", "b"]}, index=["r1", "r2", "r3"])
+    profile = ep.dataframe_profile(df)
+    assert profile["shape"] == (3, 2)
+    loc_row, iloc_row = ep.select_loc_iloc(df, "r1", 0)
+    assert loc_row["x"] == iloc_row["x"] == 1
+    left = ep.pd.Series([1, 2], index=["a", "b"])
+    right = ep.pd.Series([10, 20], index=["b", "c"])
+    aligned = ep.index_aligned_add(left, right)
+    assert np.isnan(aligned.loc["a"])
+    assert ep.index_aligned_add(left, right, fill_value=0).loc["c"] == 20
+    assert ep.interpolate_missing(ep.pd.Series([1.0, np.nan, 3.0])).iloc[1] == 2
+    nullable = ep.nullable_int_series([1, None, 3])
+    assert str(nullable.dtype) == "Int64"
+    indicator = ep.add_missing_indicator(df, "x")
+    assert indicator.loc["r3", "x_missing"] == 1
+    rel = ep.pd.DataFrame({"A": [1, 2, 2], "B": [3, 4, 4]})
+    assert list(ep.relational_project(rel, ["A"]).columns) == ["A"]
+    assert ep.relational_select(rel, lambda d: d["A"] > 1).shape[0] == 2
+    assert "C" in ep.relational_rename(rel, {"A": "C"}).columns
+    assert ep.relational_union(rel.iloc[:2], rel.iloc[1:]).shape[0] == 2
+    assert ep.relational_set_difference(rel.iloc[:2], rel.iloc[1:]).iloc[0]["A"] == 1
+    cross = ep.relational_cross_product(ep.pd.DataFrame({"A": [1, 2]}), ep.pd.DataFrame({"B": [3, 4]}))
+    assert cross.shape == (4, 2)
+    assert ep.join_category(ep.pd.DataFrame({"id": [1, 2]}), ep.pd.DataFrame({"id": [1, 1]}), "id") == "one-to-many"
+
+    fig, ax = ep.plt.subplots()
+    ep.ax_set_labels(ax, title="T", xlabel="X", ylabel="Y", xlim=(0, 1), ylim=(0, 1))
+    assert ax.get_title() == "T"
+    assert ep.choose_colormap("diverging") == "coolwarm"
+    assert ep.choose_plot_type("time-series", "trend") == "line"
+    ep.plt.close(fig)
+
+
 def main() -> None:
     test_linear_solver_and_integration()
     test_roots_gradient_and_ciphers()
     test_statistics_sampling_and_random_generators()
     test_oop_functions_and_numpy_patterns()
+    test_sec_notebook_expansions()
+    test_slide_expansions()
     print("all exam_prep tests passed")
 
 
